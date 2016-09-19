@@ -1,12 +1,11 @@
 (function() {
   'use strict';
-
   angular
-    .module('tamediaChalenge')
+    .module('tamedia')
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
   }

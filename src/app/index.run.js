@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tamediaChalenge')
+    .module('tamedia')
     .run(runBlock);
 
   /** @ngInject */
