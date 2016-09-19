@@ -1,0 +1,8 @@
+requirements:
+    - node
+    - npm
+
+Project start:
+    - run 'npm i',
+    - run 'bower i',
+    - run 'gulp serve',
