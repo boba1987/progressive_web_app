@@ -1,18 +1,20 @@
 (function() {
   'use strict';
 
-  describe('controllers', function(){
-    var vm;
-
+  describe('MainController', function(){
     beforeEach(module('tamedia'));
-    beforeEach(inject(function(_$controller_) {
 
-      vm = _$controller_('MainController');
+    var $controller;
+    beforeEach(inject(function(_$controller_) {
+      $controller = _$controller_;
     }));
 
-    it('should define more than 5 awesome things', function() {
-      expect(angular.isArray(vm.productList)).toBeTruthy();
-      expect(vm.productList.length === 20).toBeTruthy();
-    });
+    describe('vm.productList', function(){
+      it('should define more than 5 awesome things', function() {
+        var controller = $controller('MainController', { vm: this });
+        expect(angular.isArray(vm.productList)).toBeTruthy();
+        expect(vm.productList.length === 20).toBeTruthy();
+      });
+    })
   });
 })();

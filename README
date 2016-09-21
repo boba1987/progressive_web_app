@@ -1,4 +1,4 @@
-requirements:
+Project requirements:
     - node
     - npm
 
@@ -6,3 +6,7 @@ Project start:
     - run 'npm i',
     - run 'bower i',
     - run 'gulp serve',
+
+Project Documetation:
+    - to see front-end application documentation run 'gulp ngdocs'
+    - to see back-end application documentation run 'gulp ngdocs_backend'
