@@ -12,8 +12,8 @@
     describe('vm.productList', function(){
       it('should define more than 5 awesome things', function() {
         var controller = $controller('MainController', { vm: this });
-        expect(angular.isArray(vm.productList)).toBeTruthy();
-        expect(vm.productList.length === 20).toBeTruthy();
+        expect(angular.isArray(controller.vm.productList)).toBeTruthy();
+        expect(controller.vm.productList.length === 20).toBeTruthy();
       });
     })
   });
