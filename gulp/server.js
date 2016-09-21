@@ -11,6 +11,8 @@ var util = require('util');
 
 var proxyMiddleware = require('http-proxy-middleware');
 
+var nodemon = require('gulp-nodemon');
+
 function browserSyncInit(baseDir, browser) {
   browser = browser === undefined ? 'default' : browser;
 
@@ -46,7 +48,19 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function () {
+/**
+ *  Start proxy server
+ */
+
+gulp.task('proxy', function () {
+  nodemon({
+    script: 'backend/proxy.js',
+    ext: 'js html',
+    env: { 'NODE_ENV': 'development' }
+  })
+});
+
+gulp.task('serve', ['proxy', 'watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
