@@ -1,22 +1,26 @@
-<div class="container">
-  <div class="row">
-    <ul class="container-list">
-      <li ng-repeat="item in main.productList" class="clearfix">
-        <div class="col-sm-6">
-          <img ng-src="{{item.PictureUrl}}" src="./assets/images/loading_spinner.gif" alt="" class="img-center-xs">
-        </div>
-        <div class="col-sm-6 text-left text-center-xs">
-          {{item.Title}} <br>
-          <b>Price:&nbsp;</b>{{item.Price}} <br>
-          <b>Buy Now Price:&nbsp;</b>{{item.BuyNowPrice}}
-        </div>
-        <div class="col-lg-2 col-sm-2">
+<div class="product-list" ng-class="{'open': main.singleProductOpen}">
+  <acme-navbar title="main.pageTitle" back-button="main.singleProductOpen" back-callback="main.backCallback"></acme-navbar>
+  <div class="container main-view-holder">
+    <single-product ng-class="{opened: main.singleProductOpen}"></single-product>
+    <div class="row">
+      <ul class="container-list">
+        <li ng-repeat="item in main.productList" ng-click="main.showSingleProd(item)" class="clearfix">
+          <div class="col-sm-6">
+            <img ng-src="{{item.PictureUrl}}" src="./assets/images/loading_spinner.gif" alt="" class="img-center-xs">
+          </div>
+          <div class="col-sm-6 text-left text-center-xs">
+            {{item.Title}} <br>
+            <b>Price:&nbsp;</b>{{item.Price}} <br>
+            <b>Buy Now Price:&nbsp;</b>{{item.BuyNowPrice}}
+          </div>
+          <div class="col-lg-2 col-sm-2">
 
-        </div>
-        <div class="col-lg-10 col-sm-10">
+          </div>
+          <div class="col-lg-10 col-sm-10">
 
-        </div>
-      </li>
-    </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

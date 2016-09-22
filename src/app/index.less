@@ -34,12 +34,18 @@
 // injector
 // endinjector
 
+@c1: #3b5998;
+
 // Main view styles
+
+
 
 .container-list {
   padding: 0;
   margin: 0;
   list-style: none;
+  padding-top: 100px;
+  transition: all 0.3s;
 
   li {
     border-bottom: solid 1px;
@@ -61,10 +67,88 @@
 }
 
 .container-list{
+  position: relative;
+  left: 0;
+
   li{
     &:hover{
       cursor: pointer;
       background: #e6f2ff;
     }
   }
+}
+
+.overlay-loading{
+  background: white;
+  opacity: 0.75;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.loading-spinner{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+  width: 50px;
+  height: 50px;
+}
+
+.head-stripe{
+  background-color: @c1;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  height: 80px;
+}
+
+.main-view-holder{
+  overflow: hidden;
+  position: relative;
+}
+
+.product-list{
+  &.open{
+    .container-list{
+      left: -300px;
+    }
+  }
+}
+
+/*
+  We're using CSS transitions for when
+  the enter and move events are triggered
+  for the element that has the .repeated-item
+  class
+*/
+.container-list.ng-enter, .repeated-item.ng-move {
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+
+/*
+ The ng-enter-active and ng-move-active
+ are where the transition destination properties
+ are set so that the animation knows what to
+ animate.
+*/
+.container-list.ng-enter.ng-enter-active,
+.container-list.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+/*
+  We're using CSS keyframe animations for when
+  the leave event is triggered for the element
+  that has the .repeated-item class
+*/
+.container-list.ng-leave {
+  animation: 0.5s my_animation;
 }
