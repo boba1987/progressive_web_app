@@ -33,3 +33,38 @@
  */
 // injector
 // endinjector
+
+// Main view styles
+
+.container-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    border-bottom: solid 1px;
+    padding: 10px;
+  }
+}
+
+.text-center-xs{
+  @media(max-width: 767px){
+    text-align: center;
+  }
+}
+
+.img-center-xs{
+  @media(max-width: 767px){
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.container-list{
+  li{
+    &:hover{
+      cursor: pointer;
+      background: #e6f2ff;
+    }
+  }
+}
