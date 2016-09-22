@@ -26,8 +26,10 @@
 
     <div ui-view></div>
 
-    <div ng-if="loading" class="overlay-loading"></div>
-    <img ng-if="loading" src="./assets/images/loading_spinner.gif" class="loading-spinner" alt="">
+    <div ng-show='stateIsLoading'>
+      <div ng-if="loading" class="overlay-loading"></div>
+      <img ng-if="loading" src="./assets/images/loading_spinner.gif" class="loading-spinner" alt="">
+    </div>
 
 
     <!-- build:js(src) scripts/vendor.js -->

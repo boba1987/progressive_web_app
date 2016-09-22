@@ -15,7 +15,11 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, $rootScope) {
+    var scope = $rootScope;
+    scope.$on('$stateChangeStart',function(){
+      scope.stateIsLoading = true;
+    });
 
     $log.debug('runBlock end');
   }
