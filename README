@@ -14,6 +14,12 @@ Tamedia project overview
 
     - save items in a localstorage to be used when offline
 
+Development NOTES:
+  - use gulp for the build tool and task runner
+  - use ngdocs to build developer documentation
+  - use angular to build front-end app
+  - build node proxy server to avoid CORS ./backend/proxy.js
+  - use "nightmare" node module to scrape single product page
 
 Project requirements:
     - node
@@ -27,10 +33,3 @@ Project start:
 Project Documetation:
     - to see front-end application documentation run 'gulp ngdocs'
     - to see back-end application documentation run 'gulp ngdocs_backend'
-
-Developer NOTES:
-  - use gulp for the build tool and task runner
-  - use ngdocs to build developer documentation
-  - use angular to build front-end app
-  - build node proxy server to avoid CORS ./backend/proxy.js
-  - use "nightmare" node module to scrape single product page
