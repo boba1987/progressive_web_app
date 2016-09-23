@@ -41,6 +41,19 @@
                 }
               };
 
+              var offline;
+
+              window.addEventListener('offline', function(e) {
+                  // Queue up events for server.
+                  offline = true;
+              }, false);
+
+              if(offline){
+                return {
+                  data: Storage.get('items')
+                }
+              }
+
               return apiFactory.getProductList(config).then(function(res){
                 Storage.save('items', res.data.articles);
                 return res;

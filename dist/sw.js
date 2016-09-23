@@ -9,10 +9,13 @@ self.addEventListener('install', function(e) {
             return cache.addAll([
                 './',
                 './styles/app-2bd230b8b4.css',
-                './scripts/app-c78013e745.js',
+                './assets/images',
+                './scripts/app-a03898d22c.js',
                 './scripts/vendor-3e48a67529.js',
                 './fonts/glyphicons-halflings-regular.woff',
-                './offline.html'
+                './sw.js',
+                './main.js',
+                './index.html'
             ]).then(function() {
                 self.skipWaiting();
             });
