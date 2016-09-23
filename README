@@ -20,7 +20,7 @@ Project requirements:
 Project start:
     - run 'npm i',
     - run 'bower i',
-    - run 'gulp serve',
+    - run 'gulp serve:dist',
 
 Project Documetation:
     - to see front-end application documentation run 'gulp ngdocs'
