@@ -25,6 +25,7 @@
        *
        * @requires tamedia.factory:apiFactory
        * @requires tamedia.controller:MainController
+       * @requires tamedia.factory:Storage
        */
       .state('home', {
         url: '/',
@@ -33,14 +34,17 @@
         controllerAs: 'main',
         resolve: {
           productList: /** @ngInject */
-            function (apiFactory) {
+            function (apiFactory, Storage) {
               var config = {
                 params:{
                   nbArticles: 20
                 }
               };
 
-              return apiFactory.getProductList(config);
+              return apiFactory.getProductList(config).then(function(res){
+                Storage.save('items', res.data.articles);
+                return res;
+              });
             }
         }
       });

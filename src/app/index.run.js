@@ -15,7 +15,9 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope) {
+  function runBlock($log, $rootScope, Storage) {
+    Storage.bootstrap();
+
     var scope = $rootScope;
     scope.$on('$stateChangeStart',function(){
       scope.stateIsLoading = true;

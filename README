@@ -12,6 +12,8 @@ Tamedia project overview
     - sw.js - Defines a service worker and defines files to be cached
     - main.js - Registers a service worker defined in sw.js
 
+    - save items in a localstorage to be used when offline
+
 
 Project requirements:
     - node
