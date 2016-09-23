@@ -8,8 +8,8 @@ self.addEventListener('install', function(e) {
         caches.open(cacheName).then(function(cache) {
             return cache.addAll([
                 './',
-                './styles/app-676198b775.css',
-                './scripts/app-2c64e2991f.js',
+                './styles/app-2bd230b8b4.css',
+                './scripts/app-c78013e745.js',
                 './scripts/vendor-3e48a67529.js',
                 './fonts/glyphicons-halflings-regular.woff',
                 './offline.html'

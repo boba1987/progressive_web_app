@@ -12,6 +12,8 @@ var request = require('request');
 var express = require('express');
 var app = express();
 var q = require('q');
+var Nightmare = require('nightmare');
+var nightmare = Nightmare({ show: false })
 
 app.listen(8090, function () {
   console.log('Proxy server started at port 8090');
@@ -30,7 +32,7 @@ var options = {
  * @name tamedia.proxy.getArticles
  *
  * @description
- * Do a http call from required endpoing
+ * Do a http call from required endpoint
  *
  * @param {object} config Accepts params object in this format:
  * <pre>
@@ -51,6 +53,24 @@ function getArticles(config){
   });
 
   return deferred.promise;
+}
+
+/**
+ * @ngdoc interface
+ * @name tamedia.proxy.getSingleArticle
+ *
+ * @description
+ * Scrate requested resource using nightmare
+ *
+ * @param {object} config Accepts params object in this format:
+ * <pre>
+ * params:{
+ *
+ * }
+ * </pre>
+ */
+function getSingleArticle(config){
+
 }
 
 /**
@@ -77,4 +97,33 @@ app.get('/articles', function(req, res) {
   }, function error(err){
     console.log(err);
   });
+});
+
+/**
+ * @ngdoc interface
+ * @name tamedia.proxy.getSingleArticle.route
+ *
+ * @description
+ * Handles http call on '/getSingleArticle' route
+ *
+ * @param {object} req Accepts query param object in this format:
+ * <pre>
+ * query:{
+ *
+ * }
+ * </pre>
+ */
+app.get('/getSingleArticle', function(req, res) {
+  nightmare
+    .goto(req.query.url)
+    .wait('#divArticleDescriptionOriginal')
+    .evaluate(function () {
+        return document.querySelector('#divArticleDescriptionOriginal #description')
+      })
+      .end()
+      .then(function(link) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.send(link);
+        done();
+      })
 });

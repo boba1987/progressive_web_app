@@ -19,7 +19,8 @@
       ){
         var apiFactoryFactory = {
             // GET Methods
-            getProductList: getProductList
+            getProductList: getProductList,
+            getSingleProduct: getSingleProduct
         };
 
         return apiFactoryFactory;
@@ -41,6 +42,25 @@
         */
         function getProductList(params) {
           return $http.get(apiEndpoint.proxy + '/articles', params);
+        }
+
+        /**
+         * @ngdoc
+         * @name tamedia.factory:apiFactory#getSingleProduct
+         * @methodOf tamedia.factory:apiFactory
+         *
+         * @description
+         * GET method of the Account API, get single product details
+         *
+         * @param {object} paramsObject Accepts params object in this format:
+         * <pre>
+         * params:{
+         *  url: "https://www.ricardo.ch/kaufen/haushalt-und-wohnen/badezimmer/wc/automatischer-wc-sitz-mit/v/an855739648/"
+         * }
+         * </pre>
+        */
+        function getSingleProduct(params) {
+          return $http.get(apiEndpoint.proxy + '/getSingleArticle', params);
         }
 
     }

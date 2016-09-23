@@ -2,7 +2,8 @@ single-product {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: red;
+  padding-top: 100px;
+  background: white;
   right: -100%;
   top: 0;
   transition: all 0.3s;
@@ -10,5 +11,11 @@ single-product {
 
   &.opened{
     right: 0;
+  }
+
+  .single-product {
+    position: fixed;
+    text-align: center;
+    width: 100%;
   }
 }

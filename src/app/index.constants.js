@@ -17,6 +17,6 @@
       .constant('moment', moment)
       .constant('apiEndpoint', {
           host: 'https://www.ricardo.ch',
-          proxy: 'http://192.168.0.141:8090'
+          proxy: 'http://localhost:8090'
       })
 })();

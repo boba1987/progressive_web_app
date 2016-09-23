@@ -34,11 +34,13 @@
         resolve: {
           productList: /** @ngInject */
             function (apiFactory) {
-              var params = {
-                nbArticles: 20
+              var config = {
+                params:{
+                  nbArticles: 20
+                }
               };
 
-              return apiFactory.getProductList(params);
+              return apiFactory.getProductList(config);
             }
         }
       });

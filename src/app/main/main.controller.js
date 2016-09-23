@@ -9,6 +9,7 @@
    * Home view controller
    *
    * @requires productList
+   * @requires apiFactory
    */
 
   angular
@@ -16,14 +17,22 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(productList) {
+  function MainController(productList, apiFactory) {
     var vm = this;
     vm.pageTitle = "Latest products";
     vm.productList = productList.data.articles;
-    
+
     vm.showSingleProd = function(item){
+      var config = {
+        params: {
+          url: item.Url
+        }
+      };
+
       vm.singleProductOpen = true;
       vm.pageTitle = "Product overview"
+
+      apiFactory.getSingleProduct(config);
     }
 
     vm.backCallback = function(){
