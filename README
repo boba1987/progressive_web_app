@@ -8,7 +8,7 @@ Tamedia project overview
     - Applications data is received from www.ricardo.ch.
     - “Lates products” page is getting it’s data from API endpoints defined in file ./backend/proxy.js running small NODE app. This way CORS is avoided and could be used to move some intense actions to this middleware.
     - “Product overview” - since there is no API endpoint that will retrieve .json like response, page of selected product will be scraped in background using “nightmare” node module. This functionality is defined in ./backend/proxy.js -> /getSingleArticle route.
-- Progressive app: to make this app “progressive” manifest.json, sw.js, main.js and offline.html files are added to ./dist folder
+- Progressive app: to make this app “progressive” manifest.webmanifest, sw.js, main.js and offline.html files are added to ./dist folder
     - sw.js - Defines a service worker and defines files to be cached
     - main.js - Registers a service worker defined in sw.js
 
