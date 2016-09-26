@@ -114,16 +114,15 @@ app.get('/articles', function(req, res) {
  * </pre>
  */
 app.get('/getSingleArticle', function(req, res) {
+  console.log(req.query.url);
   nightmare
     .goto(req.query.url)
-    .wait('#divArticleDescriptionOriginal')
+    .wait('.ric-main')
     .evaluate(function () {
-        return document.querySelector('#divArticleDescriptionOriginal #description')
-      })
-      .end()
-      .then(function(link) {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.send(link);
-        done();
-      })
+      return  document.querySelector('.ric-main .ric-description-user').textContent
+    })
+    .then(function(link) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.send(link);
+    })
 });
