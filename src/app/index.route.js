@@ -34,7 +34,7 @@
         controllerAs: 'main',
         resolve: {
           productList: /** @ngInject */
-            function (apiFactory, Storage) {
+            function (apiFactory, Storage, $window) {
               var config = {
                 params:{
                   nbArticles: 20
@@ -43,7 +43,7 @@
 
               var offline;
 
-              window.addEventListener('offline', function(e) {
+              $window.addEventListener('offline', function() {
                   // Queue up events for server.
                   offline = true;
               }, false);

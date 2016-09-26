@@ -11,19 +11,11 @@
       restrict: 'E',
       templateUrl: 'app/components/single_product/single.product.html',
       scope: {
-          product: '=product'
-      },
-      controller: SingleProductController,
-      controllerAs: 'vm',
-      bindToController: true
+          product: '='
+      }
     };
 
     return directive;
-
-    /** @ngInject */
-    function SingleProductController() {
-
-    }
   }
 
 })();

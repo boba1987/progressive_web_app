@@ -10,6 +10,10 @@
    *
    * @requires productList
    * @requires apiFactory
+   * @requires $rootScope
+   * @requires $timeout
+   * @requires $rootScope
+   *
    */
 
   angular
@@ -17,11 +21,12 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(productList, apiFactory) {
+  function MainController($rootScope, $timeout, $log, productList, apiFactory) {
     var vm = this;
     vm.pageTitle = "Latest products";
     vm.productList = productList.data.articles;
 
+    // Handles click on a product
     vm.showSingleProd = function(item){
       var config = {
         params: {
@@ -29,10 +34,24 @@
         }
       };
 
-      vm.singleProductOpen = true;
-      vm.pageTitle = "Product overview"
+      // Show loader
+      $rootScope.loading = true;
 
-      apiFactory.getSingleProduct(config);
+      // API call
+      apiFactory.getSingleProduct(config).then(function(res){
+        $rootScope.loading = false; // Hide loader
+        vm.singleProductOpen = true; // Slide in product details
+        vm.pageTitle = "Product overview"; // Set page title
+
+        // Bind product details to view
+        vm.prodDetails = {
+          details: res.data.trim(),
+          img: item.PictureUrl,
+          price: item.Price
+        };
+      },function error(err){
+        $log.error(err);
+      });
     }
 
     vm.backCallback = function(){
