@@ -1,7 +1,7 @@
-<div class="product-list" ng-class="{'open': main.singleProductOpen}">
-  <acme-navbar title="main.pageTitle" back-button="main.singleProductOpen" back-callback="main.backCallback"></acme-navbar>
+<div class="product-list" ng-class="{'open': main.singleProductOpenStart, 'opened': main.singleProductOpenDone}">
+  <acme-navbar title="main.pageTitle" back-button="main.singleProductOpenStart" back-callback="main.backCallback"></acme-navbar>
+  <single-product product="main.prodDetails"></single-product>
   <div class="container main-view-holder">
-    <single-product product="main.prodDetails"></single-product>
     <div class="row">
       <ul class="container-list">
         <li ng-repeat="item in main.productList" ng-click="main.showSingleProd(item)" class="clearfix">

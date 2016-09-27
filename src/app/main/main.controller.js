@@ -9,10 +9,11 @@
    * Home view controller
    *
    * @requires productList
-   * @requires apiFactory
+   * @requires ApiFactory
    * @requires $rootScope
    * @requires $timeout
    * @requires $rootScope
+   * @requires $window
    *
    */
 
@@ -21,13 +22,25 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($rootScope, $timeout, $log, productList, apiFactory) {
+  function MainController($rootScope, $timeout, $log, $window, productList, ApiFactory) {
     var vm = this;
     vm.pageTitle = "Latest products";
     vm.productList = productList.data.articles;
 
     // Handles click on a product
     vm.showSingleProd = function(item){
+      var offline;
+
+      $window.addEventListener('offline', function() {
+          // Queue up events for server.
+          offline = true;
+      }, false);
+
+      if(offline){
+        console.log('You are offline ATM, try later!');
+        return;
+      }
+
       var config = {
         params: {
           url: item.Url
@@ -38,10 +51,14 @@
       $rootScope.loading = true;
 
       // API call
-      apiFactory.getSingleProduct(config).then(function(res){
+      ApiFactory.getSingleProduct(config).then(function(res){
         $rootScope.loading = false; // Hide loader
-        vm.singleProductOpen = true; // Slide in product details
+        vm.singleProductOpenStart = true; // Slide in product details
         vm.pageTitle = "Product overview"; // Set page title
+
+        $timeout(function(){
+          vm.singleProductOpenDone = true;
+        }, 400);
 
         // Bind product details to view
         vm.prodDetails = {
@@ -55,7 +72,8 @@
     }
 
     vm.backCallback = function(){
-      vm.singleProductOpen = false;
+      vm.singleProductOpenDone = false;
+      vm.singleProductOpenStart = false;
       vm.pageTitle = "Latest products";
     }
   }

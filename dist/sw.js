@@ -8,14 +8,15 @@ self.addEventListener('install', function(e) {
         caches.open(cacheName).then(function(cache) {
             return cache.addAll([
                 './',
-                './styles/app-2bd230b8b4.css',
+                './styles/app-0f4caef2bd.css',
                 './assets/images',
-                './scripts/app-a03898d22c.js',
+                './scripts/app-083e9bf2b2.js',
                 './scripts/vendor-3e48a67529.js',
                 './fonts/glyphicons-halflings-regular.woff',
                 './sw.js',
                 './main.js',
-                './index.html'
+                './index.html',
+                './offline.html'
             ]).then(function() {
                 self.skipWaiting();
             });
@@ -25,15 +26,18 @@ self.addEventListener('install', function(e) {
 
 // when the browser fetches a URL…
 self.addEventListener('fetch', function(event) {
-    // … either respond with the cached object or go ahead and fetch the actual URL
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            if (response) {
-                // retrieve from cache
-                return response;
-            }
-            // fetch as normal
-            return fetch(event.request);
-        })
-    );
+  var response;
+
+  // … either respond with the cached object or go ahead and fetch the actual URL
+  event.respondWith(caches.match(event.request).catch(function() {
+    return fetch(event.request);
+  }).then(function(r) {
+    response = r;
+    caches.open('v1').then(function(cache) {
+      cache.put(event.request, response);
+    });
+    return response.clone();
+  }).catch(function() {
+    return caches.match('/offline.html');
+  }));
 });

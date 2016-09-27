@@ -15,8 +15,14 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, Storage) {
+  function runBlock($log, $rootScope, $window, Storage) {
     Storage.bootstrap();
+
+    $window.addEventListener('offline', function() {
+        // Queue up events for server.
+        $rootScope.offline = true;
+        console.log('you are offline');
+    }, false);
 
     var scope = $rootScope;
     scope.$on('$stateChangeStart',function(){

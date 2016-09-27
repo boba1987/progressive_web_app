@@ -51,7 +51,7 @@ a {
   margin: 0;
   list-style: none;
   padding-top: 100px;
-  transition: all 0.3s;
+  transition: left 0.3s;
 
   li {
     border-bottom: solid 1px;
@@ -111,7 +111,7 @@ a {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   height: 80px;
 }
 
@@ -127,7 +127,19 @@ a {
     }
 
     single-product{
-      right: 0;  
+      right: 0;
+    }
+  }
+
+  &.opened{
+    .container-list{
+      //opacity: 0;
+      position: fixed;
+      left: -100px;
+    }
+
+    single-product, .single-product{
+      position: absolute;
     }
   }
 }

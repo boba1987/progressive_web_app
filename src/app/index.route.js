@@ -23,7 +23,7 @@
        * @description
        * Home screen route, showing product list
        *
-       * @requires tamedia.factory:apiFactory
+       * @requires tamedia.factory:ApiFactory
        * @requires tamedia.controller:MainController
        * @requires tamedia.factory:Storage
        */
@@ -34,27 +34,20 @@
         controllerAs: 'main',
         resolve: {
           productList: /** @ngInject */
-            function (apiFactory, Storage, $window) {
+            function (ApiFactory, Storage, $rootScope) {
               var config = {
                 params:{
                   nbArticles: 20
                 }
               };
 
-              var offline;
-
-              $window.addEventListener('offline', function() {
-                  // Queue up events for server.
-                  offline = true;
-              }, false);
-
-              if(offline){
+              if($rootScope.offline){
                 return {
                   data: Storage.get('items')
                 }
               }
 
-              return apiFactory.getProductList(config).then(function(res){
+              return ApiFactory.getProductList(config).then(function(res){
                 Storage.save('items', res.data.articles);
                 return res;
               });

@@ -2,7 +2,7 @@
     'use strict';
     /**
      * @ngdoc service
-     * @name tamedia.factory:apiFactory
+     * @name tamedia.factory:ApiFactory
      *
      * @description
      * POST method of the Account API
@@ -12,23 +12,23 @@
      *
      */
     angular.module('tamedia')
-        .factory('apiFactory', apiFactory);
+        .factory('ApiFactory', ApiFactory);
 
-      function apiFactory(
+      function ApiFactory(
         $http, apiEndpoint
       ){
-        var apiFactoryFactory = {
+        var ApiFactoryFactory = {
             // GET Methods
             getProductList: getProductList,
             getSingleProduct: getSingleProduct
         };
 
-        return apiFactoryFactory;
+        return ApiFactoryFactory;
 
         /**
          * @ngdoc
-         * @name tamedia.factory:apiFactory#getProductList
-         * @methodOf tamedia.factory:apiFactory
+         * @name tamedia.factory:ApiFactory#getProductList
+         * @methodOf tamedia.factory:ApiFactory
          *
          * @description
          * GET method of the Account API
@@ -46,8 +46,8 @@
 
         /**
          * @ngdoc
-         * @name tamedia.factory:apiFactory#getSingleProduct
-         * @methodOf tamedia.factory:apiFactory
+         * @name tamedia.factory:ApiFactory#getSingleProduct
+         * @methodOf tamedia.factory:ApiFactory
          *
          * @description
          * GET method of the Account API, get single product details
