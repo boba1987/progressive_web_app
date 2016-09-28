@@ -29,15 +29,8 @@
 
     // Handles click on a product
     vm.showSingleProd = function(item){
-      var offline;
-
-      $window.addEventListener('offline', function() {
-          // Queue up events for server.
-          offline = true;
-      }, false);
-
-      if(offline){
-        console.log('You are offline ATM, try later!');
+      if($rootScope.offline){
+        alert('You are offline, try later!');
         return;
       }
 

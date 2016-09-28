@@ -21,7 +21,7 @@
     $window.addEventListener('offline', function() {
         // Queue up events for server.
         $rootScope.offline = true;
-        console.log('you are offline');
+        $log.log('you are offline');
     }, false);
 
     var scope = $rootScope;
