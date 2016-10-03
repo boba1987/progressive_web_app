@@ -41,16 +41,13 @@
                 }
               };
 
-              if($rootScope.offline){
-                return {
-                  data: Storage.get('items')
-                }
-              }
+              // if($rootScope.offline){
+              //   return {
+              //     data: Storage.get('items')
+              //   }
+              // }
 
-              return ApiFactory.getProductList(config).then(function(res){
-                Storage.save('items', res.data.articles);
-                return res;
-              });
+              return ApiFactory.getProductList(config);
             }
         }
       });

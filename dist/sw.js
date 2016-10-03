@@ -7,15 +7,25 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open(cacheName).then(function(cache) {
             return cache.addAll([
-                './',
-                './styles/app-0f4caef2bd.css',
-                './assets/images',
-                './scripts/app-083e9bf2b2.js',
+                './index.html',
+                './assets/images/loading_spinner.gif',
+
+                './maps/scripts/app-47af444170.js',
+                './maps/scripts/vendor-3e48a67529.js.map',
+
+                './maps/styles/app-5609ba82e6.css.map',
+                './maps/styles/vendor-c2769e81fe.css.map',
+
+                './scripts/app-47af444170.js',
                 './scripts/vendor-3e48a67529.js',
+
+                './styles/app-5609ba82e6.css',
+                './styles/vendor-c2769e81fe.css',
+
                 './fonts/glyphicons-halflings-regular.woff',
+
                 './sw.js',
                 './main.js',
-                './index.html',
                 './offline.html'
             ]).then(function() {
                 self.skipWaiting();
@@ -37,7 +47,8 @@ self.addEventListener('fetch', function(event) {
       cache.put(event.request, response);
     });
     return response.clone();
-  }).catch(function() {
-    return caches.match('/offline.html');
+  }).catch(function(err) {
+    console.log(err);
+    return caches.match('/index.html');
   }));
 });
