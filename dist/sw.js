@@ -10,13 +10,13 @@ self.addEventListener('install', function(e) {
                 './index.html',
                 './assets/images/loading_spinner.gif',
 
-                './maps/scripts/app-47af444170.js',
+                './maps/scripts/app-92ae0b8462.js.map',
                 './maps/scripts/vendor-3e48a67529.js.map',
 
                 './maps/styles/app-5609ba82e6.css.map',
                 './maps/styles/vendor-c2769e81fe.css.map',
 
-                './scripts/app-47af444170.js',
+                './scripts/app-92ae0b8462',
                 './scripts/vendor-3e48a67529.js',
 
                 './styles/app-5609ba82e6.css',
@@ -44,11 +44,12 @@ self.addEventListener('fetch', function(event) {
   }).then(function(r) {
     response = r;
     caches.open('v1').then(function(cache) {
-      cache.put(event.request, response);
+      if(response){
+          cache.put(event.request, response);
+      }
     });
     return response.clone();
   }).catch(function(err) {
-    console.log(err);
-    return caches.match('/index.html');
+    return fetch(event.request);
   }));
 });
